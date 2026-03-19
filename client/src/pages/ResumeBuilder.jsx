@@ -2,6 +2,8 @@ import React,{useEffect, useState} from 'react'
 import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, DownloadIcon, EyeIcon, EyeOffIcon, FileText, FolderIcon, GraduationCap, Share2Icon, Sparkles, User } from 'lucide-react'
 import PersonalInfoForm from '../components/PersonalInfoForm'
 import ResumePreview from '../components/ResumePreview'
+import TemplateSelector from '../components/TemplateSelector'
+
 
 import { Link } from 'react-router-dom'
 
@@ -83,7 +85,7 @@ const ResumeBuilder = () => {
               <div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
 
                 <div className='flex items-center gap-2'>
-                  
+                    <TemplateSelector selectedTemplate={resumeData.template} onChange={(template)=> setResumeData(prev => ({...prev, template}))}/>
                   
                 </div>
 
