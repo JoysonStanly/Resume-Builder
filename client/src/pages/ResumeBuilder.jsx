@@ -4,7 +4,8 @@ import PersonalInfoForm from '../components/PersonalInfoForm'
 import ColorPicker from '../components/ColorPicker'
 import ResumePreview from '../components/ResumePreview'
 import TemplateSelector from '../components/TemplateSelector'
-
+import ProfessionalSummaryForm from '../components/ProfessionalSummaryForm'
+import ExperienceForm from '../components/ExperienceForm'
 
 import { Link } from 'react-router-dom'
 
