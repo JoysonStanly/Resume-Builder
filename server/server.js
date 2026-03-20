@@ -1,9 +1,9 @@
+import "dotenv/config";
 import express from 'express';
 import cors from "cors";
 import connectDB from "./configs/db.js";
 import userRouter from "./routes/userRoutes.js";
 import resumeRouter from "./routes/resumeRoutes.js";
-import "dotenv/config";
 
 const app = express()
 const PORT = process.env.PORT || 3000 
