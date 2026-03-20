@@ -3,16 +3,16 @@ import Resume from "../models/Resume.js";
 import fs from 'fs';
 
 
-// controller for creating a new resume
+
 // POST: /api/resumes/create
 export const createResume = async (req, res) => {
     try {
         const userId = req.userId;
         const {title} = req.body;
 
-        // create new resume
+        
         const newResume = await Resume.create({userId, title})
-        // return success message
+        
         return res.status(201).json({message: 'Resume created successfully', resume: newResume})
 
     } catch (error) {
@@ -20,7 +20,7 @@ export const createResume = async (req, res) => {
     }
 }
 
-// controller for deleting a resume
+
 // DELETE: /api/resumes/delete
 export const deleteResume = async (req, res) => {
     try {
@@ -29,7 +29,7 @@ export const deleteResume = async (req, res) => {
 
        await Resume.findOneAndDelete({userId, _id: resumeId})
 
-        // return success message
+      
         return res.status(200).json({message: 'Resume deleted successfully'})
 
     } catch (error) {
@@ -38,7 +38,7 @@ export const deleteResume = async (req, res) => {
 }
 
 
-// get user resume by id
+
 // GET: /api/resumes/get
 export const getResumeById = async (req, res) => {
     try {
@@ -62,7 +62,7 @@ export const getResumeById = async (req, res) => {
     }
 }
 
-// get resume by id public
+
 // GET: /api/resumes/public
 export const getPublicResumeById = async (req, res) => {
     try {
@@ -79,7 +79,7 @@ export const getPublicResumeById = async (req, res) => {
     }
 }
 
-// controller for updating a resume
+
 // PUT: /api/resumes/update
 export const updateResume = async (req, res) =>{
     try {
