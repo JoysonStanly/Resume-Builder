@@ -18,6 +18,8 @@ const Login = () => {
         password: ''
     })
 
+    const apiBaseURL = (import.meta.env.VITE_BASE_URL || '').replace(/\/$/, '')
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -36,7 +38,8 @@ const Login = () => {
     }
 
     const handleGoogleLogin = () => {
-        window.location.href = 'http://localhost:3000/api/auth/google'
+        const googleAuthURL = apiBaseURL ? `${apiBaseURL}/api/auth/google` : '/api/auth/google'
+        window.location.href = googleAuthURL
     }
 
     return (
