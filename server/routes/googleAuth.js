@@ -6,13 +6,13 @@ import User from "../models/User.js";
 
 const googleAuthRouter = express.Router();
 
-const REDIRECT_URI =
-    process.env.GOOGLE_REDIRECT_URI || "http://localhost:3000/api/auth/google/callback";
-
 googleAuthRouter.get("/google", (req, res) => {
     if (!process.env.GOOGLE_CLIENT_ID) {
         return res.status(500).json({ message: "GOOGLE_CLIENT_ID is not configured" });
     }
+
+    // ✅ Read env variable per request, not at startup
+    const REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI || "http://localhost:3000/api/auth/google/callback";
 
     const params = new URLSearchParams({
         client_id: process.env.GOOGLE_CLIENT_ID,
@@ -26,6 +26,9 @@ googleAuthRouter.get("/google", (req, res) => {
 
 googleAuthRouter.get("/google/callback", async (req, res) => {
     const { code } = req.query;
+
+    // ✅ Read env variable per request
+    const REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI || "http://localhost:3000/api/auth/google/callback";
 
     if (!code) {
         return res.status(400).json({ message: "Missing Google authorization code" });
@@ -97,6 +100,7 @@ googleAuthRouter.get("/google/callback", async (req, res) => {
             `${process.env.CLIENT_URL}/auth/callback?token=${encodeURIComponent(appToken)}`
         );
     } catch (error) {
+        console.error("Google auth error:", error.response?.data || error.message);
         return res.redirect(`${process.env.CLIENT_URL}/?state=login&error=google_auth_failed`);
     }
 });
