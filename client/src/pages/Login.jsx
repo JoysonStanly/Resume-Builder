@@ -3,7 +3,7 @@ import React from 'react'
 import api from '../configs/api'
 import { useDispatch } from 'react-redux'
 import { login } from '../app/features/authSlice'
-import toast from 'react-hot-toast'
+import toast from '../utils/customToast'
 
 const Login = () => {
 

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-
+import {Link} from 'react-router-dom'
 const CallToAction = () => {
   const sectionRef = useRef(null)
 
@@ -54,12 +54,12 @@ const CallToAction = () => {
 
           {/* Right: CTA */}
           <div className="cta-right">
-            <a href="https://prebuiltui.com" className="cta-btn">
+            <Link to='/app?state=register' className="cta-btn">
               <span>Get Started</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
               </svg>
-            </a>
+            </Link>
             <p className="cta-note">No credit card required</p>
           </div>
         </div>

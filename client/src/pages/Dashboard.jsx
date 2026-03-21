@@ -4,7 +4,7 @@ import { dummyResumeData } from '../assets/assets'
 import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import api from '../configs/api'
-import toast from 'react-hot-toast'
+import toast from '../utils/customToast'
 import pdfToText from 'react-pdftotext'
 
 const Dashboard = () => {

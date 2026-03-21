@@ -380,7 +380,7 @@ const Hero = () => {
           transition: opacity 0.3s;
           border-radius: inherit;
         }
-        .nav-btn-primary:hover::before { opacity: 1; }
+        \
         .nav-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(22,163,74,0.45); }
         .nav-btn-primary:active { transform: scale(0.97); }
 

@@ -13,7 +13,7 @@ import ProjectForm from '../components/ProjectForm'
 import SkillsForm from '../components/SkillsForm'
 import { useSelector } from 'react-redux'
 import api from '../configs/api'
-import toast from 'react-hot-toast'
+import toast from '../utils/customToast'
 
 const ResumeBuilder = () => {
 

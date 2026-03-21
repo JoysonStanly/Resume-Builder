@@ -10,7 +10,7 @@ import AuthCallback from './pages/AuthCallback'
 import { useDispatch } from 'react-redux'
 import api from './configs/api'
 import { login, setLoading } from './app/features/authSlice'
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 
 const App = () => {
 
@@ -40,7 +40,19 @@ const App = () => {
 
   return (
     <>
-    <Toaster />
+    <Toaster
+      position="top-center"
+      reverse={false}
+      gutter={8}
+      toastOptions={{
+        duration: 3000,
+        style: {
+          background: 'transparent',
+          boxShadow: 'none',
+          padding: 0,
+        },
+      }}
+    />
       <Routes>
         <Route path='/' element={<Home />}/>
 
