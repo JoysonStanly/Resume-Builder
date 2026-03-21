@@ -9,6 +9,10 @@ const authSlice = createSlice({
     },
     reducers: {
         login: (state, action)=>{
+            if(typeof action.payload === 'string'){
+                state.token = action.payload
+                return
+            }
             state.token = action.payload.token
             state.user = action.payload.user
         },

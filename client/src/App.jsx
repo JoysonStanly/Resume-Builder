@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Layout from './pages/Layout'
@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import ResumeBuilder from './pages/ResumeBuilder'
 import Preview from './pages/Preview'
 import Login from './pages/Login'
+import AuthCallback from './pages/AuthCallback'
 import { useDispatch } from 'react-redux'
 import api from './configs/api'
 import { login, setLoading } from './app/features/authSlice'
@@ -15,7 +16,7 @@ const App = () => {
 
   const dispatch = useDispatch()
 
-  const getUserData = async () => {
+  const getUserData = useCallback(async () => {
     const token = localStorage.getItem('token')
     try {
       if(token){
@@ -31,11 +32,11 @@ const App = () => {
       dispatch(setLoading(false))
       console.log(error.message)
     }
-  }
+  }, [dispatch])
 
   useEffect(()=>{
     getUserData()
-  },[])
+  },[getUserData])
 
   return (
     <>
@@ -47,6 +48,12 @@ const App = () => {
           <Route index element={<Dashboard />}/>
           <Route path='builder/:resumeId' element={<ResumeBuilder />}/>
         </Route>
+
+        <Route path='dashboard' element={<Layout />}>
+          <Route index element={<Dashboard />}/>
+        </Route>
+
+        <Route path='auth/callback' element={<AuthCallback />}/>
 
         <Route path='view/:resumeId' element={<Preview />}/>
 
