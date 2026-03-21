@@ -10,26 +10,39 @@ import googleAuthRouter from "./routes/googleAuth.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const corsOptions = process.env.CLIENT_URL
-    ? { origin: process.env.CLIENT_URL }
-    : { origin: true };
-
 // Database connection
-await connectDB()
+connectDB().then(() => {
+  console.log('DB Connected');
+}).catch(err => {
+  console.error('DB Connection Error:', err);
+});
 
-app.use(express.json())
-app.use(cors(corsOptions))
+// CORS setup
+const corsOptions = {
+  origin: [
+    process.env.CLIENT_URL,
+    'http://localhost:5173',
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
 
-app.get('/', (req, res)=> res.send("Server is live..."))
-app.use('/api/users', userRouter)
-app.use('/api/resumes', resumeRouter)
-app.use('/api/ai', aiRouter)
-app.use('/api/auth', googleAuthRouter)
+app.use(express.json());
+app.use(cors(corsOptions));
 
+// Routes
+app.get('/', (req, res) => res.send("Server is live..."));
+app.use('/api/users', userRouter);
+app.use('/api/resumes', resumeRouter);
+app.use('/api/ai', aiRouter);
+app.use('/api/auth', googleAuthRouter);
+
+// Only listen locally, not on Vercel
 if (process.env.VERCEL !== '1') {
-    app.listen(PORT, ()=>{
-        console.log(`Server is running on port ${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
 }
 
 export default app;
