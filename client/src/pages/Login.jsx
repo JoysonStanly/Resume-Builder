@@ -85,7 +85,7 @@ const Login = () => {
 
                 <div className="flex items-center w-full bg-white border border-gray-200 h-11 rounded-full overflow-hidden pl-5 gap-2.5 focus-within:border-green-400 transition-colors">
                     <Lock size={14} color="#9CA3AF"/>
-                    <input type="password" name="password" placeholder="Password" className="border-none outline-none ring-0 text-sm w-full text-gray-700 placeholder-gray-400" value={formData.password} onChange={handleChange} required />
+                    <input type="password" name="password" placeholder="Password" className="border-none outline-none ring-0 text-sm w-full text-gray-700 placeholder-gray-400" value={formData.password} onChange={handleChange} autocomplete="current-password" required />
                 </div>
 
                 {state === "login" && (

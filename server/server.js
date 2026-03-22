@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import mongoose from "mongoose";
 import connectDB from "./configs/db.js";
 import userRouter from "./routes/userRoutes.js";
 import resumeRouter from "./routes/resumeRoutes.js";
@@ -12,9 +13,10 @@ const PORT = process.env.PORT || 3000;
 
 // Database connection
 connectDB().then(() => {
-  console.log('DB Connected');
+  console.log('✅ DB Connected');
 }).catch(err => {
-  console.error('DB Connection Error:', err);
+  console.error('⚠️ DB Connection Error (non-critical on Vercel):', err.message);
+  // Continue running even if DB connection fails - routes will handle it
 });
 
 // CORS setup
@@ -33,6 +35,13 @@ app.use(cors(corsOptions));
 
 // Routes
 app.get('/', (req, res) => res.send("Server is live..."));
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+    timestamp: new Date().toISOString()
+  });
+});
 app.use('/api/users', userRouter);
 app.use('/api/resumes', resumeRouter);
 app.use('/api/ai', aiRouter);
