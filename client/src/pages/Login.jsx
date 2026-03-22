@@ -74,13 +74,13 @@ const Login = () => {
                 {state !== "login" && (
                     <div className="flex items-center w-full bg-white border border-gray-200 h-11 rounded-full overflow-hidden pl-5 gap-2.5 mb-3 focus-within:border-green-400 transition-colors">
                         <User2Icon size={15} color='#9CA3AF'/>
-                        <input type="text" name="name" placeholder="Full name" className="border-none outline-none ring-0 text-sm w-full text-gray-700 placeholder-gray-400" value={formData.name} onChange={handleChange} required />
+                        <input type="text" name="name" placeholder="Full name" autocomplete="name" className="border-none outline-none ring-0 text-sm w-full text-gray-700 placeholder-gray-400" value={formData.name} onChange={handleChange} required />
                     </div>
                 )}
 
                 <div className="flex items-center w-full bg-white border border-gray-200 h-11 rounded-full overflow-hidden pl-5 gap-2.5 mb-3 focus-within:border-green-400 transition-colors">
                     <Mail size={14} color="#9CA3AF" />
-                    <input type="email" name="email" placeholder="Email address" className="border-none outline-none ring-0 text-sm w-full text-gray-700 placeholder-gray-400" value={formData.email} onChange={handleChange} required />
+                    <input type="email" name="email" placeholder="Email address" autocomplete="email" className="border-none outline-none ring-0 text-sm w-full text-gray-700 placeholder-gray-400" value={formData.email} onChange={handleChange} required />
                 </div>
 
                 <div className="flex items-center w-full bg-white border border-gray-200 h-11 rounded-full overflow-hidden pl-5 gap-2.5 focus-within:border-green-400 transition-colors">
