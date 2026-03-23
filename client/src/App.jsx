@@ -6,7 +6,6 @@ import Dashboard from './pages/Dashboard'
 import ResumeBuilder from './pages/ResumeBuilder'
 import Preview from './pages/Preview'
 import Login from './pages/Login'
-import AuthCallback from './pages/AuthCallback'
 import { useDispatch } from 'react-redux'
 import api from './configs/api'
 import { login, setLoading } from './app/features/authSlice'
@@ -64,9 +63,6 @@ const App = () => {
         <Route path='dashboard' element={<Layout />}>
           <Route index element={<Dashboard />}/>
         </Route>
-
-        <Route path='auth/callback' element={<AuthCallback />}/>
-
         <Route path='view/:resumeId' element={<Preview />}/>
 
       </Routes>
