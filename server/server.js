@@ -48,11 +48,11 @@ app.use("/api/ai", aiRouter);
 
 // Serve frontend
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "frontend/dist")));
+app.use(express.static(path.join(__dirname, "client/dist")));
 
 // ✅ FINAL FIX (NO ERRORS)
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/dist/index.html"));
+  res.sendFile(path.join(__dirname, "client/dist/index.html"));
 });
 
 // Start server
