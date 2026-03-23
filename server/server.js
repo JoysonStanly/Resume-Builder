@@ -27,7 +27,7 @@ app.use(
   })
 );
 
-// Basic routes
+// Routes
 app.get("/", (req, res) => {
   res.send("Server is live 🚀");
 });
@@ -42,18 +42,16 @@ app.get("/health", (req, res) => {
   });
 });
 
-// API routes
 app.use("/api/users", userRouter);
 app.use("/api/resumes", resumeRouter);
 app.use("/api/ai", aiRouter);
 
-// Frontend serve
+// Serve frontend
 const __dirname = path.resolve();
-
 app.use(express.static(path.join(__dirname, "frontend/dist")));
 
-// ✅ FINAL FIX
-app.get("/*", (req, res) => {
+// ✅ FINAL FIX (NO ERRORS)
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, "frontend/dist/index.html"));
 });
 
