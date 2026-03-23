@@ -12,7 +12,7 @@ import aiRouter from "./routes/aiRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
+// DB
 connectDB()
   .then(() => console.log("✅ DB Connected"))
   .catch((err) => console.log("❌ DB Error:", err.message));
@@ -22,12 +22,12 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL || "*",
     credentials: true,
   })
 );
 
-
+// Basic routes
 app.get("/", (req, res) => {
   res.send("Server is live 🚀");
 });
@@ -42,25 +42,22 @@ app.get("/health", (req, res) => {
   });
 });
 
-
+// API routes
 app.use("/api/users", userRouter);
 app.use("/api/resumes", resumeRouter);
 app.use("/api/ai", aiRouter);
 
-
-
+// Frontend serve
 const __dirname = path.resolve();
-
 
 app.use(express.static(path.join(__dirname, "frontend/dist")));
 
-
-app.get("*", (req, res) => {
+// ✅ FINAL FIX
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend/dist/index.html"));
 });
 
-
-
+// Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
